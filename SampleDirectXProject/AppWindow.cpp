@@ -17,18 +17,13 @@
 
 #include "SceneCamera.h"
 
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
+
+
 #include <Windows.h>
-
-__declspec(align(16))
-struct constant
-{
-	Matrix4x4 m_world;
-	Matrix4x4 m_view;
-	Matrix4x4 m_proj;
-
-	unsigned int m_time;
-};
-
+#include <tchar.h>
 
 AppWindow::AppWindow()
 {
@@ -133,20 +128,46 @@ void AppWindow::onCreate()
 	gameObject_1 = GameObject::Instantiate();
 	gameObject_1->transform->SetPosition(Vector3D(0, 0, 0));
 	gameObject_1->GetComponent<MeshComponent>()->SetMesh(cube);*/
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+	ImGui::StyleColorsDark();
+
+	auto* rs = GraphicsEngine::get()->getRenderSystem();
+
+	ImGui_ImplWin32_Init(m_hwnd);
+	ImGui_ImplDX11_Init(rs->m_d3d_device, rs->m_imm_context);
 }
 
 void AppWindow::onUpdate()
 {
 	Window::onUpdate();
+
 	InputSystem::get()->update();
 
-	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0.5f, 0.5f,0.5f, 1);
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	if (show_demo_window)
+		ImGui::ShowDemoWindow(&show_demo_window);
+
+	ImGui::Begin("Hello, world!");
+	ImGui::Text("This is some useful text.");
+	ImGui::Checkbox("Demo Window", &show_demo_window);
+	ImGui::End();
+
+	ImGui::Render();
+
+	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0.5f, 0.5f, 0.5f, 1.0f);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->clearDepthStencilView(this->m_swap_chain);
 
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-	const float deltaTime = EngineTime::getDeltaTime();
+	const float deltaTime = (float)EngineTime::getDeltaTime();
 
 	// Update scene camera
 	sceneCamera->Update(deltaTime);
@@ -156,6 +177,7 @@ void AppWindow::onUpdate()
 		gameObject->Update(deltaTime);
 	}
 
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	m_swap_chain->present(true);
 }
 
@@ -174,6 +196,10 @@ void AppWindow::onDestroy()
 	gameObjects.clear();
 
 	delete sceneCamera;
+
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
 void AppWindow::onFocus()

@@ -1,7 +1,8 @@
 
 
 #include "Window.h"
-
+#include "imgui.h"
+#include "imgui_impl_win32.h"
 #include "EngineTime.h"
 
 //Window* window=nullptr;
@@ -11,9 +12,12 @@ Window::Window()
 	
 }
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK WndProc(HWND hwnd,UINT msg, WPARAM wparam, LPARAM lparam)
 {
+	ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam);
+
 	switch (msg)
 	{
 	case WM_CREATE:

@@ -47,5 +47,8 @@ private:
 	std::vector<GameObject*> gameObjects;
 
 	class SceneCamera* sceneCamera = nullptr;
+
+private:
+	bool show_demo_window = true;
 };
 
