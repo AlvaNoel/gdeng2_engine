@@ -331,7 +331,7 @@ void GameObjectManager::CreateArmadillo()
     SelectGameObject(obj);
 }
 
-void GameObjectManager::CreateObjectFromFile(std::string name, PrimitiveType type, SimpleMath::Vector3 position, SimpleMath::Vector3 rotation, SimpleMath::Vector3 scale, bool hasPhysics)
+void GameObjectManager::CreateObjectFromFile(PrimitiveType type, SimpleMath::Vector3 position, SimpleMath::Vector3 rotation, SimpleMath::Vector3 scale, bool hasPhysics)
 {
     GameObject* obj = nullptr;
 

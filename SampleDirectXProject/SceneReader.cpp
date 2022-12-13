@@ -79,23 +79,36 @@ void SceneReader::ReadFromFile()
 
 	sceneFile >> root;
 
-	std::string objectName;
+	//std::string objectName;
 	PrimitiveType objectType;
 	SimpleMath::Vector3 position;
 	SimpleMath::Vector3 rotation;
 	SimpleMath::Vector3 scale;
 	bool hasPhysics;
 
-	for (auto const& id : root.getMemberNames())
-	{
-		hasPhysics = (bool)root[id]["hasPhysics"].asInt();
-		objectName = root[id]["name"].asString();
-		position =	{ root[id]["position"][0]["x"].asFloat(), root[id]["position"][0]["y"].asFloat(), root[id]["position"][0]["z"].asFloat() };
-		rotation =	{ root[id]["rotation"][0]["x"].asFloat(), root[id]["rotation"][0]["y"].asFloat(), root[id]["rotation"][0]["z"].asFloat() };
-		scale =	{ root[id]["scale"][0]["x"].asFloat(), root[id]["scale"][0]["y"].asFloat(), root[id]["scale"][0]["z"].asFloat() };
-		objectType = (PrimitiveType)root[id]["type"].asInt();
+	auto array = root["objectsToInstantiate"];
 
-		GameObjectManager::Get()->CreateObjectFromFile(objectName, objectType, position, rotation, scale, hasPhysics);
+	//for (auto const& id : array.getMemberNames())
+	//{
+	//	hasPhysics = (bool)array[id]["hasPhysics"].asInt();
+	//	//objectName = root[id]["name"].asString();
+	//	position =	{ array.get(id,array)["position"][0]["x"].asFloat(), array[id]["position"][0]["y"].asFloat(), array[id]["position"][0]["z"].asFloat()};
+	//	rotation =	{ array[id]["rotation"][0]["x"].asFloat(), array[id]["rotation"][0]["y"].asFloat(), array[id]["rotation"][0]["z"].asFloat() };
+	//	scale =	{ array[id]["scale"][0]["x"].asFloat(), array[id]["scale"][0]["y"].asFloat(), array[id]["scale"][0]["z"].asFloat() };
+	//	objectType = (PrimitiveType)array[id]["type"].asInt();
+
+	//	GameObjectManager::Get()->CreateObjectFromFile(objectType, position, rotation, scale, hasPhysics);
+	//}
+
+	for(int i = 0; i < array.size(); i++)
+	{
+		hasPhysics = (bool)array[i]["hasPhysics"].asInt();
+		position = { array[i]["position"]["x"].asFloat(), array[i]["position"]["y"].asFloat(), array[i]["position"]["z"].asFloat() };
+		rotation = { array[i]["rotation"]["x"].asFloat(), array[i]["rotation"]["y"].asFloat(), array[i]["rotation"]["z"].asFloat() };
+		scale = { array[i]["scale"]["x"].asFloat(), array[i]["scale"]["y"].asFloat(), array[i]["scale"]["z"].asFloat() };
+		objectType = (PrimitiveType)array[i]["type"].asInt();
+
+		GameObjectManager::Get()->CreateObjectFromFile(objectType, position, rotation, scale, hasPhysics);
 	}
 
 	sceneFile.close();

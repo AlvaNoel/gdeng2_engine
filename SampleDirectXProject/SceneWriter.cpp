@@ -50,6 +50,8 @@ void SceneWriter::WriteToFile()
 	}*/
 
 	Json::Value root;
+	Json::Value array;
+
 	Json::StreamWriterBuilder builder;
 	const std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
@@ -74,6 +76,7 @@ void SceneWriter::WriteToFile()
 		rotVal["x"] = rotation.x;
 		rotVal["y"] = rotation.y;
 		rotVal["z"] = rotation.z;
+		rotVal["w"] = 1.0;
 
 		Json::Value sclVal;
 
@@ -83,15 +86,21 @@ void SceneWriter::WriteToFile()
 
 		auto I = std::to_string(i);
 
-		root[I]["name"] = name;
-		root[I]["type"] = allObjects[i]->GetObjectType();
-		root[I]["position"].append(posVal);
-		root[I]["rotation"].append(rotVal);
-		root[I]["scale"].append(sclVal);
-		root[I]["hasPhysics"] = (bool)allObjects[i]->GetComponent<PhysicsComponent>();
+		array["name"] = name;
+		array["type"] = allObjects[i]->GetObjectType();
+		array["position"] = posVal;
+		array["rotation"] = rotVal;
+		array["scale"] = sclVal;
+		array["hasPhysics"] = (bool)allObjects[i]->GetComponent<PhysicsComponent>();
+
+		root["objectsToInstantiate"].append(array);
 	}
-	writer->write(root, &std::cout);
-	sceneFile << root;
+	
+	
+
+
+	writer->write(root.toStyledString(), &std::cout);
+	sceneFile << root.toStyledString();
 
 	sceneFile.close();
 }
