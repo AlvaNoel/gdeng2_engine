@@ -19,6 +19,7 @@
 #include "PlaybackScreen.h"
 #include "ActionScreen.h"
 #include "DebugScreen.h"
+#include "LoadingScreen.h"
 
 typedef std::string String;
 class UINames {
