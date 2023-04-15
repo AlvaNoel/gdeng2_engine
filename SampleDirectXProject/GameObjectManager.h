@@ -46,6 +46,11 @@ public:
 	void CreateScene4();
 	void CreateScene5();
 
+	void unloadScene(int scene);
+
+	void enableScene(int scene);
+	void disableScene(int scene);
+
 
 
 public:
@@ -73,7 +78,16 @@ private:
 	GameObject* selectedObj;
 
 public:
-	IETSemaphore* Semaphore = new IETSemaphore(1);
+	IETSemaphore* Mutex = new IETSemaphore(1);
+	IETSemaphore* Mutex2 = new IETSemaphore(1);
+	IETSemaphore* Mutex3 = new IETSemaphore(1);
+	IETSemaphore* Mutex4 = new IETSemaphore(1);
+	IETSemaphore* Mutex5 = new IETSemaphore(1);
+	IETSemaphore* meshaphore = new IETSemaphore(1);
+	IETSemaphore* meshaphore2 = new IETSemaphore(1);
+	IETSemaphore* meshaphore3 = new IETSemaphore(1);
+	IETSemaphore* meshaphore4 = new IETSemaphore(1);
+	IETSemaphore* meshaphore5 = new IETSemaphore(1);
 
 	std::vector<GameObject*> gameObjectListScene1;
 	std::unordered_map<std::string, GameObject*> gameObjectMapScene1;

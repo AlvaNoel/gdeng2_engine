@@ -37,7 +37,7 @@ void ThreadLoading::run()
 {
 	isRunning = true;
 
-	IETThread::sleep(1000);
+	
 
 	const wchar_t* path = L"";
 
@@ -48,70 +48,113 @@ void ThreadLoading::run()
 	case 1:	
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\monitor.obj"; break;
-		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
-		case 2:path = L"Assets\\Meshes\\box.obj"; break;
-		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
-		case 4:path = L"Assets\\Meshes\\teapot.obj"; break;
+		case 0:path = L"Assets\\Meshes\\cube.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(1, 1, 1)); break;
+		case 1:path = L"Assets\\Meshes\\cube.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(1, 1, 1)); break;
+		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 2:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\armadillo.obj"; break;
-		case 1:path = L"Assets\\Meshes\\asteroid.obj"; break;
-		case 2:path = L"Assets\\Meshes\\karanbit.obj"; break;
-		case 3:path = L"Assets\\Meshes\\spaceship.obj"; break;
-		case 4:path = L"Assets\\Meshes\\torus.obj"; break;
+		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 3:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\statue.obj"; break;
-		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
-		case 2:path = L"Assets\\Meshes\\box.obj"; break;
-		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
-		case 4:path = L"Assets\\Meshes\\teapot.obj"; break;
+		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 4:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\plane.obj"; break;
-		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
-		case 2:path = L"Assets\\Meshes\\box.obj"; break;
-		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
-		case 4:path = L"Assets\\Meshes\\teapot.obj"; break;
+		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 5:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\plane.obj"; break;
-		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
-		case 2:path = L"Assets\\Meshes\\box.obj"; break;
-		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
-		case 4:path = L"Assets\\Meshes\\teapot.obj"; break;
+		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	}
 
+	if (id = 1)
+		GameObjectManager::Get()->meshaphore->acquire();
+	if (id = 2)
+		GameObjectManager::Get()->meshaphore2->acquire();
+	if (id = 3)
+		GameObjectManager::Get()->meshaphore3->acquire();
+	if (id = 4)
+		GameObjectManager::Get()->meshaphore4->acquire();
+	if (id = 5)
+		GameObjectManager::Get()->meshaphore5->acquire();
 	
+	IETThread::sleep(250);
 	Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(path); 
 
 	MeshComponent* meshComponent = new MeshComponent();
 	obj->AttachComponent(meshComponent);
 	meshComponent->SetMesh(mesh);
 
-	
-
-	
-
-	GameObjectManager::Get()->Semaphore->acquire();
 	gameObjectListScene->push_back(obj);
+
+	if (id = 1)
+		GameObjectManager::Get()->meshaphore->release();
+	if (id = 2)
+		GameObjectManager::Get()->meshaphore2->release();
+	if (id = 3)
+		GameObjectManager::Get()->meshaphore3->release();
+	if (id = 4)
+		GameObjectManager::Get()->meshaphore4->release();
+	if (id = 5)
+		GameObjectManager::Get()->meshaphore5->release();
+	
+
+	
+	/*if(id = 1)
+		GameObjectManager::Get()->Mutex->acquire();
+	else if (id = 2)
+		GameObjectManager::Get()->Mutex2->acquire();
+	else if (id = 3)
+		GameObjectManager::Get()->Mutex3->acquire();
+	else if (id = 4)
+		GameObjectManager::Get()->Mutex4->acquire();
+	else if (id = 5)
+		GameObjectManager::Get()->Mutex5->acquire();*/
+
+	
+	
 	//gameObjectMapScene->emplace(obj->GetName(), obj);
-	GameObjectManager::Get()->Semaphore->release();
+
+	/*if (id = 1)
+		GameObjectManager::Get()->Mutex->release();
+	else if (id = 2)
+		GameObjectManager::Get()->Mutex2->release();
+	else if (id = 3)
+		GameObjectManager::Get()->Mutex3->release();
+	else if (id = 4)
+		GameObjectManager::Get()->Mutex4->release();
+	else if (id = 5)
+		GameObjectManager::Get()->Mutex5->release();*/
 
 	isRunning = false;
 }

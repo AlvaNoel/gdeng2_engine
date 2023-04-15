@@ -78,7 +78,11 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setRenderState(this->m_swap_chain);
 
 	GameObjectManager::Initialize();
-	
+	GameObjectManager::Get()->CreateScene1();
+	GameObjectManager::Get()->CreateScene2();
+	GameObjectManager::Get()->CreateScene3();
+	GameObjectManager::Get()->CreateScene4();
+	GameObjectManager::Get()->CreateScene5();
 	UIManager::Initialize(this->m_hwnd);
 }
 

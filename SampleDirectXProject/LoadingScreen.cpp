@@ -14,76 +14,130 @@ void LoadingScreen::DrawUI()
 	ImGui::Begin("Loading");
 
 	ImGui::Text("Scene 1");
-	ImGui::ProgressBar(0, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene1.size()/5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 1"))
 	{
-		GameObjectManager::Get()->CreateScene1();
+		GameObjectManager::Get()->enableScene(1);
+		GameObjectManager::Get()->disableScene(2);
+		GameObjectManager::Get()->disableScene(3);
+		GameObjectManager::Get()->disableScene(4);
+		GameObjectManager::Get()->disableScene(5);
 	}
 	ImGui::SameLine();
 	if(ImGui::Button("Delete 1"))
 	{
-		//do delete here noel
+		GameObjectManager::Get()->unloadScene(1);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Create 1"))
+	{
+		GameObjectManager::Get()->CreateScene1();
 	}
 
 
 	ImGui::Text("Scene 2");
-	ImGui::ProgressBar(0, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene2.size() / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 2"))
 	{
-		std::cout << "button 2";
-		GameObjectManager::Get()->CreateScene2();
+		GameObjectManager::Get()->disableScene(1);
+		GameObjectManager::Get()->enableScene(2);
+		GameObjectManager::Get()->disableScene(3);
+		GameObjectManager::Get()->disableScene(4);
+		GameObjectManager::Get()->disableScene(5);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Delete 2"))
 	{
-		//do delete here noel
+		GameObjectManager::Get()->unloadScene(2);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Create 2"))
+	{
+		GameObjectManager::Get()->CreateScene2();
 	}
 
 	ImGui::Text("Scene 3");
-	ImGui::ProgressBar(0, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene3.size() / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 3"))
 	{
-		//do load here noel
+		GameObjectManager::Get()->disableScene(1);
+		GameObjectManager::Get()->disableScene(2);
+		GameObjectManager::Get()->enableScene(3);
+		GameObjectManager::Get()->disableScene(4);
+		GameObjectManager::Get()->disableScene(5);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Delete 3"))
 	{
-		//do delete here noel
+		GameObjectManager::Get()->unloadScene(3);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Create 3"))
+	{
+		GameObjectManager::Get()->CreateScene3();
 	}
 
 	ImGui::Text("Scene 4");
-	ImGui::ProgressBar(0, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene4.size() / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 4"))
 	{
-		//do load here noel
+		GameObjectManager::Get()->disableScene(1);
+		GameObjectManager::Get()->disableScene(2);
+		GameObjectManager::Get()->disableScene(3);
+		GameObjectManager::Get()->enableScene(4);
+		GameObjectManager::Get()->disableScene(5);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Delete 4"))
 	{
-		//do delete here noel
+		GameObjectManager::Get()->unloadScene(4);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Create 4"))
+	{
+		GameObjectManager::Get()->CreateScene4();
 	}
 
+
 	ImGui::Text("Scene 5");
-	ImGui::ProgressBar(0, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene5.size() / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 5"))
 	{
-		//do load here noel
+		GameObjectManager::Get()->disableScene(1);
+		GameObjectManager::Get()->disableScene(2);
+		GameObjectManager::Get()->disableScene(3);
+		GameObjectManager::Get()->disableScene(4);
+		GameObjectManager::Get()->enableScene(5);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Delete 5"))
 	{
-		//do delete here noel
+		GameObjectManager::Get()->unloadScene(5);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Create 5"))
+	{
+		GameObjectManager::Get()->CreateScene5();
 	}
 
 	if (ImGui::Button("Load All"))
 	{
-		//do load here noel
+		GameObjectManager::Get()->enableScene(1);
+		GameObjectManager::Get()->enableScene(2);
+		GameObjectManager::Get()->enableScene(3);
+		GameObjectManager::Get()->enableScene(4);
+		GameObjectManager::Get()->enableScene(5);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Delete All"))
 	{
-		//do delete here noel
+		GameObjectManager::Get()->unloadScene(1);
+		GameObjectManager::Get()->unloadScene(2);
+		GameObjectManager::Get()->unloadScene(3);
+		GameObjectManager::Get()->unloadScene(4);
+		GameObjectManager::Get()->unloadScene(5);
 	}
 
+	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 	ImGui::End();
 }
