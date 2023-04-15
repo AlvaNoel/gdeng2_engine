@@ -55,6 +55,11 @@ void GameObjectManager::Update()
             if (gameObject->IsEnable())
                 gameObject->Update(delta);
         }
+        for (const auto& gameObject : gameObjectListScene2)
+        {
+            if (gameObject->IsEnable())
+                gameObject->Update(delta);
+        }
 
     }
 }
@@ -301,6 +306,10 @@ void GameObjectManager::CreateScene1()
     {
         GameObject* obj = GameObject::Instantiate("NAME_OBJECT_" + std::to_string(i));
 
+        int randZ = (rand() % 20);
+        //float randZ = (rand() % 10);
+        obj->GetTransform()->SetPosition(SimpleMath::Vector3(i * 2, 1, randZ));
+
         ThreadLoading* threadLoading = new ThreadLoading(1, i,obj, &gameObjectListScene1, &gameObjectMapScene1);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
@@ -318,22 +327,66 @@ void GameObjectManager::CreateScene1()
 
 void GameObjectManager::CreateScene2()
 {
+    for (int i = 0; i < 5; i++)
+    {
+        GameObject* obj = GameObject::Instantiate("NAME_OBJECT_" + std::to_string(i));
 
+        int randZ = (rand() % 20);
+        //float randZ = (rand() % 10);
+        obj->GetTransform()->SetPosition(SimpleMath::Vector3(i * 2, 1, randZ));
+
+        ThreadLoading* threadLoading = new ThreadLoading(2, i, obj, &gameObjectListScene2, &gameObjectMapScene2);
+        ThreadLoadingList.push_back(threadLoading);
+        threadLoading->start();
+    }
 }
 
 void GameObjectManager::CreateScene3()
 {
+    for (int i = 0; i < 5; i++)
+    {
+        GameObject* obj = GameObject::Instantiate("NAME_OBJECT_" + std::to_string(i));
 
+        int randZ = (rand() % 20);
+        //float randZ = (rand() % 10);
+        obj->GetTransform()->SetPosition(SimpleMath::Vector3(i * 2, 1, randZ));
+
+        ThreadLoading* threadLoading = new ThreadLoading(3, i, obj, &gameObjectListScene3, &gameObjectMapScene3);
+        ThreadLoadingList.push_back(threadLoading);
+        threadLoading->start();
+    }
 }
 
 void GameObjectManager::CreateScene4()
 {
+    for (int i = 0; i < 5; i++)
+    {
+        GameObject* obj = GameObject::Instantiate("NAME_OBJECT_" + std::to_string(i));
 
+        int randZ = (rand() % 20);
+        //float randZ = (rand() % 10);
+        obj->GetTransform()->SetPosition(SimpleMath::Vector3(i * 2, 1, randZ));
+
+        ThreadLoading* threadLoading = new ThreadLoading(4, i, obj, &gameObjectListScene4, &gameObjectMapScene4);
+        ThreadLoadingList.push_back(threadLoading);
+        threadLoading->start();
+    }
 }
 
 void GameObjectManager::CreateScene5()
 {
+    for (int i = 0; i < 5; i++)
+    {
+        GameObject* obj = GameObject::Instantiate("NAME_OBJECT_" + std::to_string(i));
 
+        int randZ = (rand() % 20);
+        //float randZ = (rand() % 10);
+        obj->GetTransform()->SetPosition(SimpleMath::Vector3(i * 2, 1, randZ));
+
+        ThreadLoading* threadLoading = new ThreadLoading(5, i, obj, &gameObjectListScene5, &gameObjectMapScene5);
+        ThreadLoadingList.push_back(threadLoading);
+        threadLoading->start();
+    }
 }
 
 GameObject* GameObjectManager::FindObjectByName(std::string name)

@@ -36,16 +36,19 @@ void ThreadLoading::dismiss()
 void ThreadLoading::run()
 {
 	isRunning = true;
+
+	IETThread::sleep(1000);
+
 	const wchar_t* path = L"";
-	MeshComponent* meshComponent = new MeshComponent();
-	obj->AttachComponent(meshComponent);
+
+	
 
 	switch(id)
 	{
 	case 1:	
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\pickaxe.obj"; break;
+		case 0:path = L"Assets\\Meshes\\monitor.obj"; break;
 		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
 		case 2:path = L"Assets\\Meshes\\box.obj"; break;
 		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
@@ -55,17 +58,17 @@ void ThreadLoading::run()
 	case 2:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\bunny.obj"; break;
-		case 1:path = L"Assets\\Meshes\\karanbit.obj"; break;
-		case 2:path = L"Assets\\Meshes\\Toyora Supra.obj"; break;
-		case 3:path = L"Assets\\Meshes\\katana.obj"; break;
-		case 4:path = L"Assets\\Meshes\\pickaxe.obj"; break;
+		case 0:path = L"Assets\\Meshes\\armadillo.obj"; break;
+		case 1:path = L"Assets\\Meshes\\asteroid.obj"; break;
+		case 2:path = L"Assets\\Meshes\\karanbit.obj"; break;
+		case 3:path = L"Assets\\Meshes\\spaceship.obj"; break;
+		case 4:path = L"Assets\\Meshes\\torus.obj"; break;
 
 		}break;
 	case 3:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\plane.obj"; break;
+		case 0:path = L"Assets\\Meshes\\statue.obj"; break;
 		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
 		case 2:path = L"Assets\\Meshes\\box.obj"; break;
 		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
@@ -93,21 +96,21 @@ void ThreadLoading::run()
 
 		}break;
 	}
+
 	
-	Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(path); meshComponent->SetMesh(mesh);
+	Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(path); 
+
+	MeshComponent* meshComponent = new MeshComponent();
+	obj->AttachComponent(meshComponent);
 	meshComponent->SetMesh(mesh);
 
 	
 
-	float randX = (rand() % 100);
-
-	//float randZ = (rand() % 10);
-
-	obj->GetTransform()->SetPosition(SimpleMath::Vector3(objCount * 2, 1, randX));
+	
 
 	GameObjectManager::Get()->Semaphore->acquire();
 	gameObjectListScene->push_back(obj);
-	gameObjectMapScene->emplace(obj->GetName(), obj);
+	//gameObjectMapScene->emplace(obj->GetName(), obj);
 	GameObjectManager::Get()->Semaphore->release();
 
 	isRunning = false;
