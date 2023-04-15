@@ -57,37 +57,40 @@ UIManager::UIManager(HWND hwnd)
 
 	// Populate UI Table
 	UINames uiNames;
-	MenuBar* menuBar = new MenuBar();
+	/*MenuBar* menuBar = new MenuBar();
 	this->uiTable[uiNames.MENU_BAR] = menuBar;
-	this->uiList.push_back(menuBar);
+	this->uiList.push_back(menuBar);*/
 
-	ObjectProperty* objProp = new ObjectProperty();
+	/*ObjectProperty* objProp = new ObjectProperty();
 	this->uiTable[uiNames.OBJECT_PROPERTY] = objProp;
-	this->uiList.push_back(objProp);
+	this->uiList.push_back(objProp);*/
 
-	ObjectParentingScreen* objParenting = new ObjectParentingScreen();
+	/*ObjectParentingScreen* objParenting = new ObjectParentingScreen();
 	this->uiTable[uiNames.OBJECT_PARENTING] = objParenting;
-	this->uiList.push_back(objParenting);
+	this->uiList.push_back(objParenting);*/
 
-	Hierarchy* hierarchy = new Hierarchy();
+	/*Hierarchy* hierarchy = new Hierarchy();
 	this->uiTable[uiNames.HIERARCHY] = hierarchy;
-	this->uiList.push_back(hierarchy);
+	this->uiList.push_back(hierarchy);*/
 
-	CreditsScreen* credits = new CreditsScreen();
+	/*CreditsScreen* credits = new CreditsScreen();
 	this->uiTable[uiNames.CREDITS_SCREEN] = credits;
-	this->uiList.push_back(credits);
+	this->uiList.push_back(credits);*/
 
-	PlaybackScreen* playback = new PlaybackScreen();
+	/*PlaybackScreen* playback = new PlaybackScreen();
 	this->uiTable[uiNames.PLAYBACK] = playback;
-	this->uiList.push_back(playback);
+	this->uiList.push_back(playback);*/
 
-	ActionScreen* action = new ActionScreen();
+	/*ActionScreen* action = new ActionScreen();
 	this->uiTable[uiNames.ACTION] = action;
-	this->uiList.push_back(action);
+	this->uiList.push_back(action);*/
 
-	DebugScreen* debug = new DebugScreen();
+	/*DebugScreen* debug = new DebugScreen();
 	this->uiTable[uiNames.DEBUG] = debug;
-	this->uiList.push_back(debug);
+	this->uiList.push_back(debug);*/
+
+	LoadingScreen* loading = new LoadingScreen();
+	this->uiList.push_back(loading);
 }
 
 UIManager::~UIManager()
