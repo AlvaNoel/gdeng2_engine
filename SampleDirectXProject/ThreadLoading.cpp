@@ -16,7 +16,7 @@ ThreadLoading::ThreadLoading(int id, int objCount ,GameObject* obj, std::vector<
 
 	this->gameObjectListScene = gameObjectListScene;
 	this->gameObjectMapScene = gameObjectMapScene;
-	std::string str = "Creating thread: " + std::to_string(id) + "\n";
+	std::string str = "Creating thread: " + std::to_string(objCount) + "\n";
 	std::cout << str;
 
 	
@@ -24,7 +24,7 @@ ThreadLoading::ThreadLoading(int id, int objCount ,GameObject* obj, std::vector<
 
 ThreadLoading::~ThreadLoading()
 {
-	std::string str = "Destroying thread: " + std::to_string(id) + "\n";
+	std::string str = "Destroying thread: " + std::to_string(objCount) + "\n";
 	std::cout << str;
 }
 
@@ -45,7 +45,7 @@ void ThreadLoading::run()
 	case 1:	
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\monitor.obj"; break;
+		case 0:path = L"Assets\\Meshes\\pickaxe.obj"; break;
 		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
 		case 2:path = L"Assets\\Meshes\\box.obj"; break;
 		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
@@ -55,11 +55,11 @@ void ThreadLoading::run()
 	case 2:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\plane.obj"; break;
-		case 1:path = L"Assets\\Meshes\\bunny.obj"; break;
-		case 2:path = L"Assets\\Meshes\\box.obj"; break;
-		case 3:path = L"Assets\\Meshes\\capsule.obj"; break;
-		case 4:path = L"Assets\\Meshes\\teapot.obj"; break;
+		case 0:path = L"Assets\\Meshes\\bunny.obj"; break;
+		case 1:path = L"Assets\\Meshes\\karanbit.obj"; break;
+		case 2:path = L"Assets\\Meshes\\Toyora Supra.obj"; break;
+		case 3:path = L"Assets\\Meshes\\katana.obj"; break;
+		case 4:path = L"Assets\\Meshes\\pickaxe.obj"; break;
 
 		}break;
 	case 3:
@@ -99,12 +99,13 @@ void ThreadLoading::run()
 
 	
 
-	//float randX = (rand() % 10);
-	//float randZ = (rand() % 10);
-	GameObjectManager::Get()->Semaphore->acquire();
-	obj->GetTransform()->SetPosition(SimpleMath::Vector3(objCount * 2, 1, 1));
+	float randX = (rand() % 100);
 
-	
+	//float randZ = (rand() % 10);
+
+	obj->GetTransform()->SetPosition(SimpleMath::Vector3(objCount * 2, 1, randX));
+
+	GameObjectManager::Get()->Semaphore->acquire();
 	gameObjectListScene->push_back(obj);
 	gameObjectMapScene->emplace(obj->GetName(), obj);
 	GameObjectManager::Get()->Semaphore->release();
