@@ -13,6 +13,8 @@
 #include "EditorAction.h"
 #include <random>
 
+std::vector<ThreadLoading*> ThreadLoadingList;
+
 GameObjectManager* GameObjectManager::instance = nullptr;
 
 GameObjectManager::GameObjectManager()
@@ -48,6 +50,12 @@ void GameObjectManager::Update()
             if(gameObject->IsEnable())
 				gameObject->Update(delta);
         }
+        for (const auto& gameObject : gameObjectListScene1)
+        {
+            if (gameObject->IsEnable())
+                gameObject->Update(delta);
+        }
+
     }
 }
 
@@ -277,6 +285,55 @@ GameObject* GameObjectManager::CreateCylinder()
     SelectGameObject(obj);
 
     return obj;
+}
+
+void GameObjectManager::CreateScene1()
+{
+    
+    //GameObject* Scene1 = GameObject::Instantiate("NAME_OBJECT_SCENE_1");
+    //GameObject* obj2 = GameObject::Instantiate("NAME_OBJECT_2");
+    //GameObject* obj3 = GameObject::Instantiate("NAME_OBJECT_3");
+    //GameObject* obj4 = GameObject::Instantiate("NAME_OBJECT_4");
+    //GameObject* obj5 = GameObject::Instantiate("NAME_OBJECT_5");
+
+    //thread
+    for (int i = 0; i < 5; i++)
+    {
+        GameObject* obj = GameObject::Instantiate("NAME_OBJECT_" + std::to_string(i));
+
+        ThreadLoading* threadLoading = new ThreadLoading(1, i,obj, &gameObjectListScene1, &gameObjectMapScene1);
+        ThreadLoadingList.push_back(threadLoading);
+        threadLoading->start();
+    }
+	/*Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\DMC.obj");
+
+    MeshComponent* meshComponent = new MeshComponent();
+    obj1->AttachComponent(meshComponent);
+    meshComponent->SetMesh(mesh);*/
+
+    //mutex
+    //gameObjectListScene1.push_back(obj1);
+	//gameObjectMapScene1.emplace(obj1->GetName(), obj1);
+}
+
+void GameObjectManager::CreateScene2()
+{
+
+}
+
+void GameObjectManager::CreateScene3()
+{
+
+}
+
+void GameObjectManager::CreateScene4()
+{
+
+}
+
+void GameObjectManager::CreateScene5()
+{
+
 }
 
 GameObject* GameObjectManager::FindObjectByName(std::string name)

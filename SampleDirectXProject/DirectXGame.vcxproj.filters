@@ -251,6 +251,11 @@
     <ClCompile Include="ActionScreen.cpp">
       <Filter>GameEngine\UIScreen</Filter>
     </ClCompile>
+    <ClCompile Include="DebugManager.cpp" />
+    <ClCompile Include="DebugScreen.cpp" />
+    <ClCompile Include="IETSemaphore.cpp" />
+    <ClCompile Include="IETThread.cpp" />
+    <ClCompile Include="ThreadLoading.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -481,6 +486,11 @@
     <ClInclude Include="ActionScreen.h">
       <Filter>GameEngine\UIScreen</Filter>
     </ClInclude>
+    <ClInclude Include="DebugManager.h" />
+    <ClInclude Include="DebugScreen.h" />
+    <ClInclude Include="IETSemaphore.h" />
+    <ClInclude Include="IETThread.h" />
+    <ClInclude Include="ThreadLoading.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

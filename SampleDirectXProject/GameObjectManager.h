@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "SimpleMath.h"
 #include <reactphysics3d/reactphysics3d.h>
+#include "ThreadLoading.h"
+#include "IETSemaphore.h"
 
 using namespace reactphysics3d;
 using namespace DirectX;
@@ -38,6 +40,13 @@ public:
 	GameObject* CreateSphere();
 	GameObject* CreateCapsule();
 	GameObject* CreateCylinder();
+	void CreateScene1();
+	void CreateScene2();
+	void CreateScene3();
+	void CreateScene4();
+	void CreateScene5();
+
+
 
 public:
 	GameObject* FindObjectByName(std::string name);
@@ -62,6 +71,25 @@ private:
 	std::vector<GameObject*> gameObjectList;
 	std::unordered_map<std::string, GameObject*> gameObjectMap;
 	GameObject* selectedObj;
+
+public:
+	IETSemaphore* Semaphore = new IETSemaphore(1);
+
+	std::vector<GameObject*> gameObjectListScene1;
+	std::unordered_map<std::string, GameObject*> gameObjectMapScene1;
+
+	std::vector<GameObject*> gameObjectListScene2;
+	std::unordered_map<std::string, GameObject*> gameObjectMapScene2;
+
+	std::vector<GameObject*> gameObjectListScene3;
+	std::unordered_map<std::string, GameObject*> gameObjectMapScene3;
+
+	std::vector<GameObject*> gameObjectListScene4;
+	std::unordered_map<std::string, GameObject*> gameObjectMapScene4;
+
+	std::vector<GameObject*> gameObjectListScene5;
+	std::unordered_map<std::string, GameObject*> gameObjectMapScene5;
+
 
 public:
 	PhysicsWorld* GetPhysicsWorld();

@@ -18,6 +18,7 @@
 #include "EngineBackend.h"
 #include "ActionHistory.h"
 
+
 // IMGUI
 #include <ctype.h> 
 #include <limits.h> 
@@ -77,6 +78,7 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setRenderState(this->m_swap_chain);
 
 	GameObjectManager::Initialize();
+	GameObjectManager::Get()->CreateScene1();
 	UIManager::Initialize(this->m_hwnd);
 }
 
