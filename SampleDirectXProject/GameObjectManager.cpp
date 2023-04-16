@@ -326,10 +326,20 @@ void GameObjectManager::CreateScene1()
         obj->GetTransform()->SetPosition(SimpleMath::Vector3(randX, 1, randZ));
         obj->SetEnable(false);
 
-        ThreadLoading* threadLoading = new ThreadLoading(1, i,obj, &gameObjectListScene1, &gameObjectMapScene1);
+        MeshComponent* meshComponent = new MeshComponent();
+        obj->AttachComponent(meshComponent);
+
+        gameObjectListScene1.push_back(obj);
+
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading* threadLoading = new ThreadLoading(1, i, gameObjectListScene1[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
     }
+
 	/*Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\DMC.obj");
 
     MeshComponent* meshComponent = new MeshComponent();
@@ -352,7 +362,15 @@ void GameObjectManager::CreateScene2()
         obj->GetTransform()->SetPosition(SimpleMath::Vector3(randX, 1, randZ));
         obj->SetEnable(false);
 
-        ThreadLoading* threadLoading = new ThreadLoading(2, i, obj, &gameObjectListScene2, &gameObjectMapScene2);
+        MeshComponent* meshComponent = new MeshComponent();
+        obj->AttachComponent(meshComponent);
+
+        gameObjectListScene2.push_back(obj);
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading* threadLoading = new ThreadLoading(2, i, gameObjectListScene2[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
     }
@@ -369,7 +387,16 @@ void GameObjectManager::CreateScene3()
         obj->GetTransform()->SetPosition(SimpleMath::Vector3(randX, 1, randZ));
         obj->SetEnable(false);
 
-        ThreadLoading* threadLoading = new ThreadLoading(3, i, obj, &gameObjectListScene3, &gameObjectMapScene3);
+        MeshComponent* meshComponent = new MeshComponent();
+        obj->AttachComponent(meshComponent);
+
+        gameObjectListScene3.push_back(obj);
+
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading* threadLoading = new ThreadLoading(3, i, gameObjectListScene3[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
     }
@@ -386,7 +413,16 @@ void GameObjectManager::CreateScene4()
         obj->GetTransform()->SetPosition(SimpleMath::Vector3(randX, 1, randZ));
         obj->SetEnable(false);
 
-        ThreadLoading* threadLoading = new ThreadLoading(4, i, obj, &gameObjectListScene4, &gameObjectMapScene4);
+        MeshComponent* meshComponent = new MeshComponent();
+        obj->AttachComponent(meshComponent);
+
+        gameObjectListScene4.push_back(obj);
+
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading* threadLoading = new ThreadLoading(4, i, gameObjectListScene4[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
     }
@@ -403,7 +439,17 @@ void GameObjectManager::CreateScene5()
         obj->GetTransform()->SetPosition(SimpleMath::Vector3(randX, 1, randZ));
         obj->SetEnable(false);
 
-        ThreadLoading* threadLoading = new ThreadLoading(5, i, obj, &gameObjectListScene5, &gameObjectMapScene5);
+        MeshComponent* meshComponent = new MeshComponent();
+        obj->AttachComponent(meshComponent);
+
+        gameObjectListScene5.push_back(obj);
+
+        
+    }
+
+    for(int i = 0; i< 5; i++)
+    {
+        ThreadLoading* threadLoading = new ThreadLoading(5, i, gameObjectListScene5[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
     }
@@ -417,6 +463,7 @@ void GameObjectManager::unloadScene(int scene)
         {
             gameObjectListScene1[i]->SetEnable(false);
             delete gameObjectListScene1[i];
+            GameObjectManager::Get()->progressBar[0]--;
         }
               gameObjectListScene1.clear();
     	break;
@@ -424,6 +471,7 @@ void GameObjectManager::unloadScene(int scene)
     {
         gameObjectListScene2[i]->SetEnable(false);
         delete gameObjectListScene2[i];
+        GameObjectManager::Get()->progressBar[1]--;
     }
           gameObjectListScene2.clear();
           break;
@@ -431,6 +479,7 @@ void GameObjectManager::unloadScene(int scene)
     {
         gameObjectListScene3[i]->SetEnable(false);
         delete gameObjectListScene3[i];
+        GameObjectManager::Get()->progressBar[2]--;
     }
           gameObjectListScene3.clear();
           break;
@@ -438,6 +487,7 @@ void GameObjectManager::unloadScene(int scene)
     {
         gameObjectListScene4[i]->SetEnable(false);
         delete gameObjectListScene4[i];
+        GameObjectManager::Get()->progressBar[3]--;
     }
           gameObjectListScene4.clear();
           break;
@@ -445,6 +495,7 @@ void GameObjectManager::unloadScene(int scene)
     {
         gameObjectListScene5[i]->SetEnable(false);
         delete gameObjectListScene5[i];
+        GameObjectManager::Get()->progressBar[4]--;
     }
           gameObjectListScene5.clear();
           break;

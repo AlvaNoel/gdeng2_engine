@@ -14,7 +14,7 @@ void LoadingScreen::DrawUI()
 	ImGui::Begin("Loading");
 
 	ImGui::Text("Scene 1");
-	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene1.size()/5.0f, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->progressBar[0] /5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 1"))
 	{
 		GameObjectManager::Get()->enableScene(1);
@@ -36,7 +36,7 @@ void LoadingScreen::DrawUI()
 
 
 	ImGui::Text("Scene 2");
-	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene2.size() / 5.0f, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->progressBar[1] / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 2"))
 	{
 		GameObjectManager::Get()->disableScene(1);
@@ -57,7 +57,7 @@ void LoadingScreen::DrawUI()
 	}
 
 	ImGui::Text("Scene 3");
-	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene3.size() / 5.0f, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->progressBar[2] / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 3"))
 	{
 		GameObjectManager::Get()->disableScene(1);
@@ -78,7 +78,7 @@ void LoadingScreen::DrawUI()
 	}
 
 	ImGui::Text("Scene 4");
-	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene4.size() / 5.0f, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->progressBar[3] / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 4"))
 	{
 		GameObjectManager::Get()->disableScene(1);
@@ -100,7 +100,7 @@ void LoadingScreen::DrawUI()
 
 
 	ImGui::Text("Scene 5");
-	ImGui::ProgressBar(GameObjectManager::Get()->gameObjectListScene5.size() / 5.0f, ImVec2(0.0f, 0.0f));
+	ImGui::ProgressBar(GameObjectManager::Get()->progressBar[4] / 5.0f, ImVec2(0.0f, 0.0f));
 	if (ImGui::Button("Load 5"))
 	{
 		GameObjectManager::Get()->disableScene(1);

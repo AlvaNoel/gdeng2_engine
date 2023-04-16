@@ -104,6 +104,8 @@ public:
 	std::vector<GameObject*> gameObjectListScene5;
 	std::unordered_map<std::string, GameObject*> gameObjectMapScene5;
 
+	float progressBar[5];
+
 
 public:
 	PhysicsWorld* GetPhysicsWorld();

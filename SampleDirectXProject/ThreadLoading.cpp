@@ -97,7 +97,9 @@ void ThreadLoading::run()
 		}break;
 	}
 
-	if (id = 1)
+	GameObjectManager::Get()->Mutex->acquire();
+
+	/*if (id = 1)
 		GameObjectManager::Get()->meshaphore->acquire();
 	if (id = 2)
 		GameObjectManager::Get()->meshaphore2->acquire();
@@ -106,18 +108,14 @@ void ThreadLoading::run()
 	if (id = 4)
 		GameObjectManager::Get()->meshaphore4->acquire();
 	if (id = 5)
-		GameObjectManager::Get()->meshaphore5->acquire();
+		GameObjectManager::Get()->meshaphore5->acquire();*/
 	
 	IETThread::sleep(250);
 	Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(path); 
 
-	MeshComponent* meshComponent = new MeshComponent();
-	obj->AttachComponent(meshComponent);
-	meshComponent->SetMesh(mesh);
+	obj->GetComponent<MeshComponent>()->SetMesh(mesh);
 
-	gameObjectListScene->push_back(obj);
-
-	if (id = 1)
+	/*if (id = 1)
 		GameObjectManager::Get()->meshaphore->release();
 	if (id = 2)
 		GameObjectManager::Get()->meshaphore2->release();
@@ -126,11 +124,15 @@ void ThreadLoading::run()
 	if (id = 4)
 		GameObjectManager::Get()->meshaphore4->release();
 	if (id = 5)
-		GameObjectManager::Get()->meshaphore5->release();
+		GameObjectManager::Get()->meshaphore5->release();*/
+	GameObjectManager::Get()->Mutex->release();
 	
-
+	GameObjectManager::Get()->progressBar[id - 1]++;
+	std::cout << " progressBar: " << id <<GameObjectManager::Get()->progressBar[id] << std::endl;
+	
 	
 	/*if(id = 1)
+	 *
 		GameObjectManager::Get()->Mutex->acquire();
 	else if (id = 2)
 		GameObjectManager::Get()->Mutex2->acquire();
