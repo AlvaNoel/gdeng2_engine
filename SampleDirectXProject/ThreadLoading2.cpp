@@ -36,50 +36,50 @@ void ThreadLoading2::onStartTask()
 	case 1:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\cube.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(1, 1, 1)); break;
-		case 1:path = L"Assets\\Meshes\\cube.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(1, 1, 1)); break;
-		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 0:path = L"Assets\\Meshes\\armadillo.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(1, 1, 1)); break;
+		case 1:path = L"Assets\\Meshes\\asteroid.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.1, .1, .1)); break;
+		case 2:path = L"Assets\\Meshes\\bunny.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(3, 3, 3)); break;
+		case 3:path = L"Assets\\Meshes\\cat.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.03, .03, .03)); break;
 		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 2:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 0:path = L"Assets\\Meshes\\cylinder.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.5, .5, .5)); break;
+		case 1:path = L"Assets\\Meshes\\hand.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.01, .01, .01)); break;
+		case 2:path = L"Assets\\Meshes\\karanbit.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(3, 3, 3)); break;
+		case 3:path = L"Assets\\Meshes\\monitor.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.5, .5, .5)); break;
 		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 3:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 0:path = L"Assets\\Meshes\\spaceship.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.5, .5, .5)); break;
+		case 1:path = L"Assets\\Meshes\\teapot.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(3, 3, 3)); break;
+		case 2:path = L"Assets\\Meshes\\sponza_basic.obj"; break;
+		case 3:path = L"Assets\\Meshes\\torus.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(3, 3, 3)); break;
 		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 4:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 0:path = L"Assets\\Meshes\\suzanne.obj"; break;
+		case 1:path = L"Assets\\Meshes\\bench.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(3, 3, 3)); break;
+		case 2:path = L"Assets\\Meshes\\crate.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.05, .05, .05)); break;
+		case 3:path = L"Assets\\Meshes\\grill.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(3, 3, 3)); break;
 		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;
 	case 5:
 		switch (objCount)
 		{
-		case 0:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 1:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 2:path = L"Assets\\Meshes\\cube.obj"; break;
-		case 3:path = L"Assets\\Meshes\\cube.obj"; break;
+		case 0:path = L"Assets\\Meshes\\doghouse.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(1.2, 1.2, 1.2)); break;
+		case 1:path = L"Assets\\Meshes\\pitcher.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.05, .05, .05)); break;
+		case 2:path = L"Assets\\Meshes\\creeper.obj"; break;
+		case 3:path = L"Assets\\Meshes\\shoes.obj"; obj->GetTransform()->SetScale(SimpleMath::Vector3(.05, .05, .05)); break;
 		case 4:path = L"Assets\\Meshes\\cube.obj"; break;
 
 		}break;

@@ -122,11 +122,16 @@ void LoadingScreen::DrawUI()
 
 	if (ImGui::Button("Load All"))
 	{
-		GameObjectManager::Get()->enableScene(1);
-		GameObjectManager::Get()->enableScene(2);
-		GameObjectManager::Get()->enableScene(3);
-		GameObjectManager::Get()->enableScene(4);
-		GameObjectManager::Get()->enableScene(5);
+		if (GameObjectManager::Get()->progressBar[0] == 5)
+			GameObjectManager::Get()->enableScene(1);
+		if (GameObjectManager::Get()->progressBar[1] == 5)
+			GameObjectManager::Get()->enableScene(2);
+		if (GameObjectManager::Get()->progressBar[2] == 5)
+			GameObjectManager::Get()->enableScene(3);
+		if (GameObjectManager::Get()->progressBar[3] == 5)
+			GameObjectManager::Get()->enableScene(4);
+		if (GameObjectManager::Get()->progressBar[4] == 5)
+			GameObjectManager::Get()->enableScene(5);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Delete All"))
