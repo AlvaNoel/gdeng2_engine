@@ -395,7 +395,7 @@ void GameObjectManager::CreateScene2()
 
     for (int i = 0; i < 5; i++)
     {
-        ThreadLoading2* threadLoading = new ThreadLoading2(2, i, gameObjectListScene1[i], this);
+        ThreadLoading2* threadLoading = new ThreadLoading2(2, i, gameObjectListScene2[i], this);
         this->threadPools[1]->scheduleTask(threadLoading);
     }
 }
@@ -427,7 +427,7 @@ void GameObjectManager::CreateScene3()
 
     for (int i = 0; i < 5; i++)
     {
-        ThreadLoading2* threadLoading = new ThreadLoading2(3, i, gameObjectListScene1[i], this);
+        ThreadLoading2* threadLoading = new ThreadLoading2(3, i, gameObjectListScene3[i], this);
         this->threadPools[2]->scheduleTask(threadLoading);
     }
 }
@@ -459,7 +459,7 @@ void GameObjectManager::CreateScene4()
 
     for (int i = 0; i < 5; i++)
     {
-        ThreadLoading2* threadLoading = new ThreadLoading2(4, i, gameObjectListScene1[i], this);
+        ThreadLoading2* threadLoading = new ThreadLoading2(4, i, gameObjectListScene4[i], this);
         this->threadPools[3]->scheduleTask(threadLoading);
     }
 }
@@ -492,7 +492,7 @@ void GameObjectManager::CreateScene5()
 
     for (int i = 0; i < 5; i++)
     {
-        ThreadLoading2* threadLoading = new ThreadLoading2(5, i, gameObjectListScene1[i], this);
+        ThreadLoading2* threadLoading = new ThreadLoading2(5, i, gameObjectListScene5[i], this);
         this->threadPools[4]->scheduleTask(threadLoading);
     }
 }
