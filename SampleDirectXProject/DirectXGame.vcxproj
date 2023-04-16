@@ -186,6 +186,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="RotationMovementComponent.cpp" />
     <ClCompile Include="SceneCamera.cpp" />
+    <ClCompile Include="sceneLoadingScreen.cpp" />
     <ClCompile Include="SceneReader.cpp" />
     <ClCompile Include="SceneWriter.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
@@ -277,6 +278,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="RotationMovementComponent.h" />
     <ClInclude Include="SceneCamera.h" />
+    <ClInclude Include="sceneLoadingScreen.h" />
     <ClInclude Include="SceneReader.h" />
     <ClInclude Include="SceneWriter.h" />
     <ClInclude Include="SimpleMath.h" />

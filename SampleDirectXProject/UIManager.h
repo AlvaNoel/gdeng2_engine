@@ -20,6 +20,7 @@
 #include "ActionScreen.h"
 #include "DebugScreen.h"
 #include "LoadingScreen.h"
+#include "sceneLoadingScreen.h"
 
 typedef std::string String;
 class UINames {
@@ -32,6 +33,7 @@ public:
 	const String PLAYBACK = "PLAYBACK";
 	const String ACTION = "ACTION";
 	const String DEBUG = "DEBUG";
+	const String LOADING = "LOADING";
 };
 
 class UIManager
@@ -60,5 +62,7 @@ private:
 
 	UIList uiList;
 	UITable uiTable;
+
+	std::vector<sceneLoadingScreen*> loadingScreens;
 };
 

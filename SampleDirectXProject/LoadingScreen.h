@@ -8,6 +8,8 @@ public:
 	~LoadingScreen();
 	void DrawUI() override;
 private:
+	void showProgress(int scene);
 
+	int currentScene = -1;
 };
 

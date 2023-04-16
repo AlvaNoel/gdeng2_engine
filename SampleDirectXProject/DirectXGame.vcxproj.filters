@@ -262,6 +262,7 @@
     <ClCompile Include="PoolWorkerThread.cpp" />
     <ClCompile Include="ThreadLoading2.cpp" />
     <ClCompile Include="IExecutionEvent.cpp" />
+    <ClCompile Include="sceneLoadingScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -503,6 +504,7 @@
     <ClInclude Include="PoolWorkerThread.h" />
     <ClInclude Include="ThreadLoading2.h" />
     <ClInclude Include="IExecutionEvent.h" />
+    <ClInclude Include="sceneLoadingScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

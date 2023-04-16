@@ -59,17 +59,17 @@ UIManager::UIManager(HWND hwnd)
 	UINames uiNames;
 	/*MenuBar* menuBar = new MenuBar();
 	this->uiTable[uiNames.MENU_BAR] = menuBar;
-	this->uiList.push_back(menuBar);*/
+	this->uiList.push_back(menuBar);
 
-	/*ObjectProperty* objProp = new ObjectProperty();
+	ObjectProperty* objProp = new ObjectProperty();
 	this->uiTable[uiNames.OBJECT_PROPERTY] = objProp;
-	this->uiList.push_back(objProp);*/
+	this->uiList.push_back(objProp);
 
-	/*ObjectParentingScreen* objParenting = new ObjectParentingScreen();
+	ObjectParentingScreen* objParenting = new ObjectParentingScreen();
 	this->uiTable[uiNames.OBJECT_PARENTING] = objParenting;
-	this->uiList.push_back(objParenting);*/
+	this->uiList.push_back(objParenting);
 
-	/*Hierarchy* hierarchy = new Hierarchy();
+	Hierarchy* hierarchy = new Hierarchy();
 	this->uiTable[uiNames.HIERARCHY] = hierarchy;
 	this->uiList.push_back(hierarchy);*/
 
