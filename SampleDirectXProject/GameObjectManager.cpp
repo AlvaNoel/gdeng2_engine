@@ -13,6 +13,8 @@
 #include "EditorAction.h"
 #include <random>
 
+#include "ThreadLoading2.h"
+
 std::vector<ThreadLoading*> ThreadLoadingList;
 
 GameObjectManager* GameObjectManager::instance = nullptr;
@@ -24,6 +26,15 @@ GameObjectManager::GameObjectManager()
     settings.defaultVelocitySolverNbIterations = 50;
     settings.gravity = reactphysics3d::Vector3(0, -9.81, 0);
     this->physicsWorld = this->physicsCommon->createPhysicsWorld(settings);
+
+    for(int i = 0; i < 5; i++)
+    {
+        ThreadPool* threadPool = new ThreadPool("ThreadPool"+std::to_string(i), 5);
+
+        threadPools.push_back(threadPool);
+
+        threadPool->startScheduler();
+    }
 }
 
 void GameObjectManager::Initialize()
@@ -333,11 +344,18 @@ void GameObjectManager::CreateScene1()
 
     }
 
-    for (int i = 0; i < 5; i++)
+    //old thread implementation
+    /*for (int i = 0; i < 5; i++)
     {
         ThreadLoading* threadLoading = new ThreadLoading(1, i, gameObjectListScene1[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
+    }*/
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading2* threadLoading = new ThreadLoading2(1, i, gameObjectListScene1[i], this);
+        this->threadPools[0]->scheduleTask(threadLoading);
     }
 
 	/*Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\DMC.obj");
@@ -368,11 +386,17 @@ void GameObjectManager::CreateScene2()
         gameObjectListScene2.push_back(obj);
     }
 
-    for (int i = 0; i < 5; i++)
+    /*for (int i = 0; i < 5; i++)
     {
         ThreadLoading* threadLoading = new ThreadLoading(2, i, gameObjectListScene2[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
+    }*/
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading2* threadLoading = new ThreadLoading2(2, i, gameObjectListScene1[i], this);
+        this->threadPools[1]->scheduleTask(threadLoading);
     }
 }
 
@@ -394,11 +418,17 @@ void GameObjectManager::CreateScene3()
 
     }
 
-    for (int i = 0; i < 5; i++)
+    /*for (int i = 0; i < 5; i++)
     {
         ThreadLoading* threadLoading = new ThreadLoading(3, i, gameObjectListScene3[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
+    }*/
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading2* threadLoading = new ThreadLoading2(3, i, gameObjectListScene1[i], this);
+        this->threadPools[2]->scheduleTask(threadLoading);
     }
 }
 
@@ -420,11 +450,17 @@ void GameObjectManager::CreateScene4()
 
     }
 
-    for (int i = 0; i < 5; i++)
+    /*for (int i = 0; i < 5; i++)
     {
         ThreadLoading* threadLoading = new ThreadLoading(4, i, gameObjectListScene4[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
+    }*/
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading2* threadLoading = new ThreadLoading2(4, i, gameObjectListScene1[i], this);
+        this->threadPools[3]->scheduleTask(threadLoading);
     }
 }
 
@@ -447,11 +483,17 @@ void GameObjectManager::CreateScene5()
         
     }
 
-    for(int i = 0; i< 5; i++)
+    /*for(int i = 0; i< 5; i++)
     {
         ThreadLoading* threadLoading = new ThreadLoading(5, i, gameObjectListScene5[i], &gameObjectListScene5, &gameObjectMapScene5);
         ThreadLoadingList.push_back(threadLoading);
         threadLoading->start();
+    }*/
+
+    for (int i = 0; i < 5; i++)
+    {
+        ThreadLoading2* threadLoading = new ThreadLoading2(5, i, gameObjectListScene1[i], this);
+        this->threadPools[4]->scheduleTask(threadLoading);
     }
 }
 
@@ -792,6 +834,11 @@ const std::vector<GameObject*> GameObjectManager::GetRoots() const
     }
 
     return roots;
+}
+
+void GameObjectManager::onFinishedExecution()
+{
+    std::cout << "Thread done! \n";
 }
 
 PhysicsWorld* GameObjectManager::GetPhysicsWorld()

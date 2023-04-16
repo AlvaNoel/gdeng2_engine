@@ -257,6 +257,11 @@
     <ClCompile Include="IETThread.cpp" />
     <ClCompile Include="ThreadLoading.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
+    <ClCompile Include="IWorkerAction.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="PoolWorkerThread.cpp" />
+    <ClCompile Include="ThreadLoading2.cpp" />
+    <ClCompile Include="IExecutionEvent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -493,6 +498,11 @@
     <ClInclude Include="IETThread.h" />
     <ClInclude Include="ThreadLoading.h" />
     <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="IWorkerAction.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="PoolWorkerThread.h" />
+    <ClInclude Include="ThreadLoading2.h" />
+    <ClInclude Include="IExecutionEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

@@ -7,12 +7,14 @@
 #include <reactphysics3d/reactphysics3d.h>
 #include "ThreadLoading.h"
 #include "IETSemaphore.h"
+#include "IExecutionEvent.h"
+#include "ThreadPool.h"
 
 using namespace reactphysics3d;
 using namespace DirectX;
 
 class GameObject;
-class GameObjectManager
+class GameObjectManager : public IExecutionEvent
 {
 private:
 	static GameObjectManager* instance;
@@ -76,6 +78,12 @@ private:
 	std::vector<GameObject*> gameObjectList;
 	std::unordered_map<std::string, GameObject*> gameObjectMap;
 	GameObject* selectedObj;
+
+	//Inherited via IExecutionEvent
+	virtual void onFinishedExecution() override;
+
+	std::vector<ThreadPool*> threadPools;
+
 
 public:
 	IETSemaphore* Mutex = new IETSemaphore(1);
