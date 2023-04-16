@@ -97,6 +97,8 @@ void ThreadLoading::run()
 		}break;
 	}
 
+	IETThread::sleep(1000);
+
 	GameObjectManager::Get()->Mutex->acquire();
 
 	/*if (id = 1)
@@ -109,8 +111,9 @@ void ThreadLoading::run()
 		GameObjectManager::Get()->meshaphore4->acquire();
 	if (id = 5)
 		GameObjectManager::Get()->meshaphore5->acquire();*/
+
+	IETThread::sleep(100);
 	
-	IETThread::sleep(250);
 	Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(path); 
 
 	obj->GetComponent<MeshComponent>()->SetMesh(mesh);
